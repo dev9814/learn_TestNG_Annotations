@@ -2,33 +2,29 @@ package annotation.TestNg;
 
 import org.testng.annotations.Test;
 
-public class Priority_Character {
+public class Depends_Method {
 
-	@Test(priority='A')
-	public void driverInitialize()
+	@Test(priority=1)
+	public void driverInitialize() 
 	{
 		System.out.println("initialize the driver");
 	}
 	
-	@Test(priority='B')
+	@Test(dependsOnMethods = "driverInitialize")
 	public void enterUrl()
 	{
 		System.out.println("enter the url to open browser");
 	}
 	
-	@Test(priority='a' , enabled=false)
+	@Test(dependsOnMethods = "enterUrl")
 	public void enterCredential()
 	{
-		System.out.println("enter the credentials");
+		System.out.println("enter the valid credentils");
 	}
 	
-	@Test(priority='b')
+	@Test(dependsOnMethods = "enterCredential")
 	public void driverClosing()
 	{
 		System.out.println("close the driver");
 	}
-	
 }
-
-// enabled part is normally true.
-
